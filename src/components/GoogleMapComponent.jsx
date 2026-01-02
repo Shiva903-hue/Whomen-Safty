@@ -1,7 +1,7 @@
 import { GoogleMap, LoadScript, Marker, Polyline, Circle, InfoWindow } from '@react-google-maps/api';
 import { useState } from 'react';
 
-const GOOGLE_API_KEY = 'AIzaSyBxPQvXtqcFMU-ju7fJOqZdW4L8M70NmVE';
+const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const mapContainerStyle = {
   width: '100%',
