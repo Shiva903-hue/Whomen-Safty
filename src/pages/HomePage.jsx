@@ -5,20 +5,20 @@ import GoogleMapComponent from '../components/GoogleMapComponent';
 import RouteCard from '../components/RouteCard';
 import { currentLocation, destinations, routesByDestination } from '../data/routesData';
 
-function HomePage({ setSelectedRoute }) {
+function HomePage({ setSelectedRoute, setSelectedDestination }) {
   const navigate = useNavigate();
-  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [localDestination, setLocalDestination] = useState(null);
   const [showRoutes, setShowRoutes] = useState(false);
   const [activeRoute, setActiveRoute] = useState('safest');
 
 
-  const currentRoutes = selectedDestination ? routesByDestination[selectedDestination.id] : null;
+  const currentRoutes = localDestination ? routesByDestination[localDestination.id] : null;
   
 
-  const destinationObj = selectedDestination ? {
-    lat: selectedDestination.lat,
-    lng: selectedDestination.lng,
-    name: selectedDestination.name,
+  const destinationObj = localDestination ? {
+    lat: localDestination.lat,
+    lng: localDestination.lng,
+    name: localDestination.name,
   } : null;
 
 
@@ -32,17 +32,19 @@ function HomePage({ setSelectedRoute }) {
     const destId = e.target.value;
     if (destId) {
       const dest = destinations.find(d => d.id === destId);
+      setLocalDestination(dest);
       setSelectedDestination(dest);
       setShowRoutes(false);
       setActiveRoute('safest');
     } else {
+      setLocalDestination(null);
       setSelectedDestination(null);
       setShowRoutes(false);
     }
   };
 
   const handleFindRoutes = () => {
-    if (selectedDestination) {
+    if (localDestination) {
       setShowRoutes(true);
     }
   };
@@ -106,7 +108,7 @@ function HomePage({ setSelectedRoute }) {
                 <div className="flex-1">
                   <p className="text-xs text-gray-500">To</p>
                   <select
-                    value={selectedDestination?.id || ''}
+                    value={localDestination?.id || ''}
                     onChange={handleDestinationChange}
                     className="w-full bg-transparent font-medium text-gray-900 outline-none cursor-pointer appearance-none"
                   >
@@ -124,9 +126,9 @@ function HomePage({ setSelectedRoute }) {
           </div>
           <button 
             onClick={handleFindRoutes}
-            disabled={!selectedDestination}
+            disabled={!localDestination}
             className={`w-full mt-4 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
-              selectedDestination 
+              localDestination 
                 ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:opacity-90' 
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
@@ -149,7 +151,7 @@ function HomePage({ setSelectedRoute }) {
               </div>
               <div className="h-[400px] relative">
                 <GoogleMapComponent 
-                  key={selectedDestination?.id || 'default'}
+                  key={localDestination?.id || 'default'}
                   currentLocation={currentLocation}
                   destination={showRoutes ? destinationObj : null}
                   selectedRoute={showRoutes && currentRoutes ? currentRoutes[activeRoute] : null}
@@ -240,7 +242,7 @@ function HomePage({ setSelectedRoute }) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-lg font-bold text-gray-900">Available Routes</h2>
-                <p className="text-sm text-gray-600">To {selectedDestination?.name} - Safety prioritized</p>
+                <p className="text-sm text-gray-600">To {localDestination?.name} - Safety prioritized</p>
               </div>
               <button 
                 onClick={handleStartNavigation}

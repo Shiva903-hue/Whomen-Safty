@@ -18,7 +18,7 @@ export const destinations = [
     lng: 79.0857,
   },
   {
-    id: 'civil-lines',
+    id: 'civil_lines',
     name: 'Civil Lines, Nagpur',
     lat: 21.1535,
     lng: 79.0725,
@@ -143,7 +143,7 @@ export const routesByDestination = {
       highlights: [],
     },
   },
-  'civil-lines': {
+ civil_lines : {
     safest: {
       id: 'safest',
       name: 'Safest Route',

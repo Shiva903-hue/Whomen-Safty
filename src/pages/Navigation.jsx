@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Navigation as NavIcon, Phone, Shield, Users, AlertTriangle, X, MapPin } from 'lucide-react';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import { trustedContacts } from '../data/contactsData';
-import { currentLocation, destination } from '../data/routesData';
+import { currentLocation } from '../data/routesData';
 
-function Navigation({ selectedRoute, isNavigating, locationSharing }) {
+function Navigation({ selectedRoute, selectedDestination, isNavigating, locationSharing }) {
   const navigate = useNavigate();
   const [showDeviation, setShowDeviation] = useState(false);
   const [showSharingPanel, setShowSharingPanel] = useState(false);
@@ -44,7 +44,7 @@ function Navigation({ selectedRoute, isNavigating, locationSharing }) {
       <div className="h-full w-full">
         <GoogleMapComponent 
           currentLocation={currentLocation}
-          destination={destination}
+          destination={selectedDestination}
           selectedRoute={selectedRoute}
         />
       </div>

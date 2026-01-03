@@ -10,6 +10,7 @@ import './App.css';
 
 function App() {
   const [selectedRoute, setSelectedRoute] = useState(null);
+  const [selectedDestination, setSelectedDestination] = useState(null);
   const [isNavigating, setIsNavigating] = useState(false);
   const [locationSharing, setLocationSharing] = useState(false);
 
@@ -22,6 +23,7 @@ function App() {
             element={
               <HomePage 
                 setSelectedRoute={setSelectedRoute}
+                setSelectedDestination={setSelectedDestination}
               />
             } 
           />
@@ -40,6 +42,7 @@ function App() {
             element={
               <Navigation 
                 selectedRoute={selectedRoute}
+                selectedDestination={selectedDestination}
                 isNavigating={isNavigating}
                 locationSharing={locationSharing}
               />
