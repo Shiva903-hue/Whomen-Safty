@@ -120,12 +120,11 @@ One-tap emergency response:
 
 | Google Technology | Purpose |
 |-------------------|--------|
-| **Google Maps JavaScript API** | Interactive map rendering, real-time location display, and route visualization |
+| **Google Maps JavaScript API** | Interactive map rendering and route visualization |
 | **Google Maps Markers** | Display user's current location, destination pins, and safe place markers |
 | **Google Maps Polylines** | Draw and visualize navigation routes with color-coded safety levels |
+| **Google Maps Circle** | Visualize safety risk zones with color-coded overlays (Green/Yellow/Red) |
 | **Google Maps InfoWindows** | Show location details, safety scores, and place information on map |
-| **Google Maps Heatmap Layer** | Visualize safety risk zones with color gradients (Green/Yellow/Red) |
-| **Google Geolocation** | Detect user's real-time position for navigation and SOS features |
 
 ---
 
